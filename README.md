@@ -6,3 +6,4 @@ Run a PuppetDB Server with PuppetBoard installed for reporting
 
 ## Examples
 
+puppet apply -e 'class { "puppetdb::server": database_host => "puppetdb-postgres", puppetdb_service_status => stopped }' --verbose
