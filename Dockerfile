@@ -24,5 +24,6 @@ ADD scripts/start_puppetdb.sh /tmp/start_puppetdb.sh
 CMD [ "/tmp/start_puppetdb.sh" ]
 
 # Expose PuppetDB ports
+EXPOSE 8080
 EXPOSE 8081
 
