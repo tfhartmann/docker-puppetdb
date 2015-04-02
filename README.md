@@ -1,4 +1,4 @@
-# PuppetDB and PuppetBoard
+# PuppetDB 
 
 Run a PuppetDB Server out of docker
 
@@ -16,7 +16,7 @@ docker run -it -d -h puppet --name puppet -h puppet tfhartmann/puppetserver
 ```
 Then Link PuppetDB to the master:
 ```Shell
-docker run --link puppet:puppet -P -it -d 699ee3a42584
+docker run --link puppet:puppet -P -it -d tfhartmann/puppetdb
 ```
 
 ## Examples
@@ -26,10 +26,10 @@ docker run --link puppet:puppet -P -it -d 699ee3a42584
 #### `Run PuppetDB`
 
 
-docker run --link puppet:puppet  -it --rm b58f95712466
+docker run --link puppet:puppet  -it --rm tfhartmann/puppetdb
 
 
-docker run --link puppet:puppet -P -it -d 699ee3a42584
+docker run --link puppet:puppet -P -it -d tfhartmann/puppetdb
 
 ##  environment variables 
 ### `DBHOST`
@@ -43,11 +43,25 @@ Defaults to 'puppetdb'
 -e DBUSER='puppetdb'
 ```
 
-
 ### `DBPASS`
 The Postgres password for the above user. Defaults to 'puppetdb'
 ```Shell
 -e DBPASS='puppetdb'
 ```
 
-puppet apply -e 'class { "puppetdb::server": database_host => "puppetdbopen.cpmpxebkd7tp.us-east-1.rds.amazonaws.com", puppetdb_service_status => stopped, listen_address => "0.0.0.0", ssl_listen_address => "0.0.0.0" }' --verbose
+### `SSL`
+Use SSL to connect to the postgres DB Defaults to false
+```Shell
+-e SSL=true/false
+```
+
+### `JAVA_ARGS`
+Pass Java args 
+```Shell
+-e JAVA_ARGS=''
+```
+
+### `NODE_TTL`
+
+### `NODE_PURGE_TTL`
+

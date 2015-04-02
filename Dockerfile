@@ -17,9 +17,10 @@ RUN yum install -y puppet \
 # dependencies.
 RUN yum remove puppetdb -y 
 RUN puppet module install puppetlabs-puppetdb
+RUN curl http://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem -o /etc/pki/ca-trust/source/anchors/rds-combined-ca-bundle.pem && \
+    update-ca-trust
 
 ADD scripts/start_puppetdb.sh /tmp/start_puppetdb.sh
-
 # Run PuppetDB
 CMD [ "/tmp/start_puppetdb.sh" ]
 
